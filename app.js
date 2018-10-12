@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const cors = require('cors');
+const corsConfig = require('./config/cors.config');
 
 require('./config/db.config');
 require('./config/passport.config').setup(passport);
@@ -24,7 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(cors(corsConfig));
 
 app.use(session({
   secret: process.env.COOKIE_SECRET || 'Super Secret',
