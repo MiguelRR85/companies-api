@@ -10,7 +10,9 @@ module.exports.list = (req, res, next) => {
 
 module.exports.create = (req, res, next) => {
     const company = new Company(req.body);
-  
+
+    company.userId = req.user.id;
+
     company.save()
       .then(company => res.status(201).json(company))
       .catch(error => next(error));

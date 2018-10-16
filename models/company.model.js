@@ -1,32 +1,23 @@
 const mongoose = require('mongoose');
 
 const companySchema = new mongoose.Schema({
-    companyName: {
+    name: {
         type: String,
         required: [true, 'The company name is required'],
         unique: true
     },
-    email: {
-        type: String,
-        required: [true, 'The email is required']
-    },
-    password: {
-        type: String,
-        required: [true, 'The password is required']
-    },
-    userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     logo:{
         type: String,
         required: 'The logo is required'
     },
-    work: {
+    description: {
         type: String,
         required: 'A brief explanation of the work of your company is required'
     },
+    userId:{type: mongoose.Schema.Types.ObjectId, ref: 'User', required: [true, `Need User`]},
     suscriptors: {
         type:[ {type: mongoose.Schema.Types.ObjectId, ref: 'User'} ]
-    },
-    date: Date
+    }    
 }, { 
     timestamps: true,
 });
