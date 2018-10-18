@@ -7,7 +7,7 @@ const user = require('../middlewares/user.middleware');
 
 router.get('/:companyId', posts.list);
 router.post('/:companyId', posts.create);
-router.get('/:id', posts.get);
+router.get('/:postId/company/:companyId/', posts.get);
 router.delete('/:id', posts.delete);
 
 module.exports = router;

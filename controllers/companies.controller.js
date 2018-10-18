@@ -21,8 +21,6 @@ module.exports.create = (req, res, next) => {
             console.info("Company1 ==>", newCompany);
             newCompany.save()
               .then(company => {
-                console.info("Company2 ==>",company)
-                console.info('Success creating new company!')
                 res.status(201).json(company) 
                 User.findByIdAndUpdate(req.user.id, { $set: {companyRole: "Admin", company: company.id }})
                     .then()

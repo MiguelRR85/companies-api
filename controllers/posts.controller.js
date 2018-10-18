@@ -20,14 +20,21 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.get = (req, res, next) => {
-  Post.findById({ user: req.params.userId, _id: req.params.id })
-    .populate('user')
-    .populate({ path: 'comments', populate: { path: 'user' } })
+  console.info('PARAMS ----> ', req.params.postId);
+  Post.findById(req.params.postId)
+    .populate('userId') // DESPLIEGA EL ID EN UN OBEJTO 
     .then(post => {
       if (!post) {
         throw createError(404, 'Post not found');
       } else {
-        res.json(post);
+        console.log(post);
+        const userEmail = post.userId.email;
+        post.userId = post.userId.id;
+
+        const data = post.toObject();
+        data.userEmail = userEmail
+
+        res.json(data);
       }
     })
     .catch(error => {
