@@ -3,21 +3,16 @@ const createError = require('http-errors');
 const mongoose = require('mongoose');
 
 module.exports.list = (req, res, next) => {
-  Post.find({ user: mongoose.Types.ObjectId(req.params.userId) })
+  
+  Post.find({companyId: req.params.companyId})
     .then(posts => res.json(posts))
     .catch(error => next(error));
 }
 
 module.exports.create = (req, res, next) => {
   const post = new Post(req.body);
-  post.user = req.user.id;
-
-  if (req.files) {
-    post.images = [];
-    for (const file of req.files) {
-      post.images.push(`${req.protocol}://${req.get('host')}/uploads/${file.filename}`);
-    }
-  }
+  post.userId = req.user._id;
+  post.companyId = req.params.companyId;
 
   post.save()
     .then(post => res.status(201).json(post))

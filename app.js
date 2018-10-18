@@ -15,8 +15,8 @@ require('./config/passport.config').setup(passport);
 const companiesRouter = require('./routes/companies.routes');
 const usersRouter = require('./routes/users.routes');
 const sessionsRouter = require('./routes/sessions.routes');
-// const messagesRouter = require('./routes/messages.routes');
-// const postsRouter = require('./routes/posts.routes');
+const commentRouter = require('./routes/comments.routes');
+const postsRouter = require('./routes/posts.routes');
 
 const app = express();
 
@@ -42,8 +42,8 @@ app.use(passport.session());
 app.use('/companies', companiesRouter);
 app.use('/users', usersRouter);
 app.use('/sessions', sessionsRouter);
-// app.use('/posts', postsRouter);
-// app.use('/messages', messagesRouter);
+app.use('/posts', postsRouter);
+app.use('/comment', commentRouter);
 
 
 // catch 404 and forward to error handler

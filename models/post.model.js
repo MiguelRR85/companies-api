@@ -1,9 +1,8 @@
 
-const Post = mongoose.model('Post', postSchema);
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-    name: {
+    title: {
         type: String,
         required: [true, 'The post name is required']
     },
@@ -11,15 +10,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: 'The post content is required'
     },
-    images: {
-        type: [String],
-        default: []
-    },
-    tags: {
-        type: [String],
-        default: []
-    },
-    user: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: [true, `Post needs an user`]
@@ -28,7 +19,7 @@ const postSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Company', 
         required: [true, `Post needs a company`]
-    },
+    }
 }, { 
   timestamps: true,
   toObject: {
