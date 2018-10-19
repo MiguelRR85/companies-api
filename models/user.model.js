@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: 'The name is required'
     },
-    image: String,
+    avatar: String,
     company: {type: mongoose.Schema.Types.ObjectId, ref: 'Company'},
     companyRole: {
         type: String,

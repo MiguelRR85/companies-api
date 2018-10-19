@@ -10,7 +10,10 @@ module.exports.list = (req, res, next) => {
 
 module.exports.create = (req, res, next) => {
     const user = new User(req.body);
-  
+    console.log("FILE=>>>>>>>>", req.file);
+     if(req.file){
+        user.avatar = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+     }
     user.save()
       .then(user => res.status(201).json(user))
       .catch(error => next(error));
