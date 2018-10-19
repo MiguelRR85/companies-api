@@ -11,8 +11,8 @@ module.exports.list = (req, res, next) => {
 
 module.exports.create = (req, res, next) => {
     const newCompany = new Company(req.body);
-    console.info('USUARIO -> ', req.user)
-    console.info('COMPANY --> ', req.body)
+    // console.info('USUARIO -> ', req.user)
+    // console.info('COMPANY --> ', req.body)
     newCompany.userId = req.user.id;
     
     Company.findOne({userId:req.user.id})

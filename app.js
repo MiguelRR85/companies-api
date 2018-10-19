@@ -43,7 +43,7 @@ app.use('/companies', companiesRouter);
 app.use('/users', usersRouter);
 app.use('/sessions', sessionsRouter);
 app.use('/posts', postsRouter);
-app.use('/comment', commentRouter);
+app.use('/comments', commentRouter);
 
 
 // catch 404 and forward to error handler

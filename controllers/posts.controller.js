@@ -27,7 +27,7 @@ module.exports.get = (req, res, next) => {
       if (!post) {
         throw createError(404, 'Post not found');
       } else {
-        console.log(post);
+       //console.log(post);
         const userEmail = post.userId.email;
         post.userId = post.userId.id;
 
